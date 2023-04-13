@@ -1,0 +1,6 @@
+public class Master extends ManufacturerWorkers {
+    public Master(String name, String surname, int age, String position,
+                  int workHours, double hourSalary) {
+        super(name, surname, age, position, workHours, hourSalary);
+    }
+}
