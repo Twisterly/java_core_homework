@@ -1,0 +1,94 @@
+import java.time.LocalDate;
+
+public class Delivery {
+
+    private String name;
+    private String address;
+    private String phone;
+    private LocalDate deliveryDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(LocalDate deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+
+    public class EmptyNameException extends Exception {
+
+        public EmptyNameException(String message) {
+            super(message);
+
+        }
+    }
+
+    public class EmptyAddressException extends Exception {
+
+        public EmptyAddressException(String message) {
+            super(message);
+
+        }
+    }
+
+    public class PhoneNumberException extends Exception {
+
+        public PhoneNumberException(String message) {
+            super(message);
+
+        }
+    }
+
+    public class DeliveryDateException extends Exception {
+
+        public DeliveryDateException(String message) {
+            super(message);
+
+        }
+    }
+
+    public void checkDelivery() throws EmptyNameException,
+            EmptyAddressException, PhoneNumberException,
+            DeliveryDateException {
+        if (this.name == null) {
+            throw new EmptyNameException("Name is not entered");
+        }
+        if (this.address == null) {
+            throw new EmptyAddressException("Address is not entered");
+        }
+        if (!this.phone.matches("\\+375[0-9]{9}")) {
+            throw new PhoneNumberException("Phone number is incorrect");
+        }
+        if (this.deliveryDate.isBefore(LocalDate.of(2022, 6, 10))
+                || (this.deliveryDate.isAfter(LocalDate.of(2022, 7, 1)))) {
+            throw new DeliveryDateException("Delivery date is incorrect");
+        }
+    }
+
+
+}
