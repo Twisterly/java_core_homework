@@ -1,0 +1,6 @@
+public class DebitGoldCard extends DebitBankCard {
+    @Override
+    public double getOverdraftLimit() {
+        return 5000;
+    }
+}
