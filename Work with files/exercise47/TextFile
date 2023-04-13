@@ -1,0 +1,61 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class TextFile {
+
+    public static void main(String[] args) throws IOException {
+        File file = new File("d:\\IT\\NewDir\\newFile.txt");
+        file.createNewFile();
+
+        try (FileWriter writer = new FileWriter(file, false)) {
+            writer.write("Hello, World!\nHow are you?\nHope you are ok!\nGoodbye!!!!");
+            writer.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        FileReader fr = new FileReader(file);
+        Scanner scanner = new Scanner(fr);
+        String line = null;
+        int punktMarks = 0;
+        int words = 0;
+        while (scanner.hasNext()) {
+            line = scanner.nextLine();
+            punktMarks += countPunktuationMark(line);
+            words += countWords(line);
+        }
+
+        System.out.println("Знаков препинания: " + punktMarks + "\nСлов: " + words);
+
+
+    }
+
+    public static int countPunktuationMark(String line) {
+        int count = 0;
+        Pattern pattern = Pattern.compile("[.,:;\\\"'?!-()]");
+        Matcher m = pattern.matcher(line);
+        while (m.find()) {
+            count++;
+        }
+        return count;
+    }
+
+    public static int countWords(String line) {
+        String newLine = line.replaceAll("[.,:;\\\"'?!-()]", "");
+        Pattern p = Pattern.compile(" *\\S+ *");
+        Matcher m = p.matcher(newLine);
+        int count = 0;
+        while (m.find()) {
+            count++;
+        }
+        return count;
+
+    }
+
+
+}
