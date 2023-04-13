@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class TestSeasonDays {
+
+    public static void main(String[] args) {
+        System.out.println("Введите название сезона");
+        Scanner console = new Scanner(System.in);
+        String result = console.nextLine();
+        Season[] seasons = Season.values();
+
+        for (int i = 0; i < seasons.length; i++) {
+            if (result.equalsIgnoreCase(seasons[i].toString())) {
+                if (result.equalsIgnoreCase(Season.WINTER.toString())) {
+                    System.out.println("Введите год");
+                    int year = console.nextInt();
+                    if (year % 4 == 0) {
+                        System.out.println(translateSeason(seasons[i].toString()) +
+                                " в високосный год " + (seasons[i].countOfDays + 1) +
+                                " " + checkEnding(seasons[i].countOfDays + 1));
+                    } else
+                        System.out.println(translateSeason(seasons[i].toString()) +
+                                " в невисокосный год " + seasons[i].countOfDays + " " +
+                                checkEnding(seasons[i].countOfDays));
+                } else
+                    System.out.println(translateSeason(seasons[i].toString()) +
+                            " " + seasons[i].countOfDays + " " +
+                            checkEnding(seasons[i].countOfDays));
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < seasons.length; i++) {
+            if (!(result.equalsIgnoreCase(seasons[i].toString()))) {
+                count++;
+                if (count == 4) {
+                    System.out.println("Такого сезона не существует");
+                }
+            }
+        }
+    }
+
+    public static String translateSeason(String season) {
+        if (season.equalsIgnoreCase(Season.WINTER.toString())) {
+            return "Зимой";
+        } else if (season.equalsIgnoreCase(Season.SPRING.toString())) {
+            return "Весной";
+        } else if (season.equalsIgnoreCase(Season.SUMMER.toString())) {
+            return "Летом";
+        } else if (season.equalsIgnoreCase(Season.AUTUMN.toString())) {
+            return "Осенью";
+        }
+        return null;
+    }
+
+    public static String checkEnding(int days){
+        if (days == 90){
+            return "дней";
+        } else if (days == 91){
+            return "день";
+        } else if (days == 92){
+            return "дня";
+        }
+        return null;
+    }
+}
