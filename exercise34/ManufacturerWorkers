@@ -1,0 +1,39 @@
+import java.text.DecimalFormat;
+
+public class ManufacturerWorkers extends Employee {
+
+    int workHours;
+    double hourSalary;
+
+    public ManufacturerWorkers(String name, String surname, int age,
+                               String position, int workHours,
+                               double hourSalary) {
+        super(name, surname, age, position);
+        this.workHours = workHours;
+        this.hourSalary = hourSalary;
+    }
+
+    @Override
+    public void countResultSalary() {
+        double procent = (this.workHours * this.hourSalary) / 100 * 13;
+        double number = (this.workHours * this.hourSalary) - procent;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String resultSalary = decimalFormat.format(number);
+        System.out.println("Зарплата сотрудника " + this.getName() + " " +
+                this.getSurname() + " " + this.getPosition() + " " +
+                resultSalary + " BYN");
+
+    }
+
+    @Override
+    public void checkHolidayDays(int days) {
+        if (days >= 250) {
+            System.out.println("Пора в отпуск. Вам нужен отдых");
+        } else if (days > 200 && days < 250) {
+            System.out.println("Если Вы не чувствуете усталось, то можете " +
+                    "продолжать работать");
+        } else
+            System.out.println("Отдыхать еще рано, Вы только вошли в рабочий " +
+                    "режим");
+    }
+}
