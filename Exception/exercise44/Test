@@ -1,0 +1,31 @@
+import java.time.LocalDate;
+
+public class Test {
+
+    public static void main(String[] args){
+        Delivery delivery = new Delivery();
+        delivery.setName("Алена");
+        delivery.setAddress("г. Минск, ул. авакяна, 5");
+        delivery.setPhone("+375295622919");
+        delivery.setDeliveryDate(LocalDate.of(2022, 6, 12));
+        Delivery delivery1 = new Delivery();
+        delivery1.setName("Петя");
+        delivery1.setAddress("г.Минск, ул.Первомайская, 11");
+        delivery1.setPhone("4345");
+        delivery1.setDeliveryDate(LocalDate.of(2022, 7, 13));
+        try {
+            delivery1.checkDelivery();
+        } catch (Delivery.EmptyNameException e) {
+            e.printStackTrace();
+        } catch (Delivery.EmptyAddressException e) {
+            e.printStackTrace();
+        } catch (Delivery.PhoneNumberException e) {
+            e.printStackTrace();
+        } catch (Delivery.DeliveryDateException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+}
