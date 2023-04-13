@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class TestSeasonDays {
+
+    public static void main(String[] args) {
+        Pair<Season, Integer>[] calendar = new Pair[4];
+        calendar[0] = new Pair<>(Season.WINTER, 90);
+        calendar[1] = new Pair<>(Season.SPRING, 92);
+        calendar[2] = new Pair<>(Season.SUMMER, 92);
+        calendar[3] = new Pair<>(Season.AUTUMN, 90);
+        System.out.println("Enter the season");
+        Scanner console = new Scanner(System.in);
+        String name = console.nextLine();
+        int count = 0;
+
+        for (Pair p : calendar) {
+            if (p.getKey().toString().equalsIgnoreCase(name)) {
+                if (Season.WINTER.toString().equalsIgnoreCase(name)) {
+                    System.out.println("Enter the year");
+                    if (console.nextInt() % 4 == 0) {
+                        System.out.println("There are " + (p.getValue() + 1)
+                                + " days in " + p.getKey().toString()
+                                .toLowerCase() + " in leap year");
+                    } else
+                        System.out.println("There are " + p.getValue()
+                                + " days in " + p.getKey().toString()
+                                .toLowerCase() + " in ordinary year");
+
+                } else
+                    System.out.println("There are " + p.getValue()
+                            + " days in " + p.getKey().toString()
+                            .toLowerCase());
+            } else if (!(p.getKey().toString().equalsIgnoreCase(name))) {
+                count++;
+                if (count == 4) {
+                    System.out.println("Wrong season");
+                }
+            }
+        }
+
+
+    }
+}
