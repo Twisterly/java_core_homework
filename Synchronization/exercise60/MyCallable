@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
+public class MyCallable implements Callable {
+
+
+    private MyCallablePrinter printer;
+    private int index;
+
+    public MyCallable(int i, MyCallablePrinter printer) {
+        this.index = i;
+        this.printer = printer;
+    }
+
+    @Override
+    public String call() {
+        System.out.println(Thread.currentThread().getName() + "(" + index +
+                ")" + " started");
+        String result = printer.recordInFile(Thread.currentThread().getName());
+        System.out.println(Thread.currentThread().getName() + "(" + index +
+                ")" + " ended");
+        return result;
+
+    }
+
+    public static void main(String[] args) {
+        ExecutorService pool = Executors.newFixedThreadPool(3);
+        MyCallablePrinter printer = new MyCallablePrinter();
+        List<Future<String>> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Callable<String> callable =
+                    new MyCallable(i, printer);
+            Future<String> future = pool.submit(callable);
+            list.add(future);
+        }
+
+        for (Future<String> fut : list) {
+            try {
+                fut.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.exit(1);
+    }
+}
