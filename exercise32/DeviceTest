@@ -1,0 +1,26 @@
+public class DeviceTest {
+
+    public static void main(String[] args) {
+        Microwave microwave1 = new Microwave();
+        microwave1.setMinTemp(180);
+        microwave1.setMaxTemp(250);
+        microwave1.switchOn();
+        microwave1.toHeat(30, 180);
+        Refrigerator refrigeration = new Refrigerator();
+        refrigeration.switchOn();
+        refrigeration.setTemp(5);
+        refrigeration.checkTemp();
+        DryerMachine dryerMachine = new DryerMachine();
+        dryerMachine.setBackLightDrum(true);
+        dryerMachine.switchOn();
+        dryerMachine.switchLightOn();
+        dryerMachine.setMinDrumSpeed(400);
+        dryerMachine.setMaxDrumSpeed(1300);
+        dryerMachine.setSpeed(1000);
+        Dishwasher dishwasher = new Dishwasher();
+        dishwasher.switchOn();
+        dishwasher.washDish(60);
+        dishwasher.switchOff();
+
+    }
+}
