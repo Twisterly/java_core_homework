@@ -1,0 +1,21 @@
+public class LaundryDevice extends Device {
+
+    public int maxDrumSpeed;
+    public int minDrumSpeed;
+
+    public int getMinDrumSpeed() {
+        return minDrumSpeed;
+    }
+
+    public void setMinDrumSpeed(int minDrumSpeed) {
+        this.minDrumSpeed = minDrumSpeed;
+    }
+
+    public int getMaxDrumSpeed() {
+        return maxDrumSpeed;
+    }
+
+    public void setMaxDrumSpeed(int maxDrumSpeed) {
+        this.maxDrumSpeed = maxDrumSpeed;
+    }
+}
