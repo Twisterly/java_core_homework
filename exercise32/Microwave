@@ -1,0 +1,18 @@
+public class Microwave extends CookingDevice {
+
+    public double plateDiameter;
+
+    public void toHeat(int sec, int temp) {
+        if (this.isOn() == true){
+            if (temp >= this.minTemp && temp <= this.maxTemp){
+                System.out.println("Разогреваем блюдо в течение " + sec + " " +
+                        "секунд");
+            } else if (temp > this.maxTemp || temp < this.minTemp){
+                System.out.println("Разогреть блюдо при такой температуре не возможно");
+            }
+        }
+        else
+            System.out.println("Включите прибор в розетку");
+    }
+
+}
