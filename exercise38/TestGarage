@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class TestGarage {
+
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        Garage<Car> garage = new Garage();
+        Garage<Motorcycle> garage1 = new Garage();
+        System.out.println("Введите название автомобиля");
+        garage.setItem(new Car(console.nextLine()));
+        System.out.println("Введите название мотоцикла");
+        garage1.setItem(new Motorcycle(console.nextLine()));
+        System.out.println(garage.getItem().getName());
+        System.out.println(garage1.getItem().getName());
+    }
+}
