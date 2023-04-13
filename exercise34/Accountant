@@ -1,0 +1,27 @@
+import java.text.DecimalFormat;
+
+public class Accountant extends FinancialWorkers {
+
+    private int MonthsBonus;
+
+    public Accountant(String name, String surname, int age, String position,
+                      int workDays, int calendarDays, double salary,
+                      int monthsBonus) {
+        super(name, surname, age, position, workDays, calendarDays, salary);
+        MonthsBonus = monthsBonus;
+    }
+
+    @Override
+    public void countResultSalary() {
+        double procent =
+                ((this.salary / this.calendarDays) * this.workDays) / 100 * 13;
+        double number =
+                (this.salary / this.calendarDays) * this.workDays + this.MonthsBonus - procent;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String resultSalary = decimalFormat.format(number);
+        System.out.println("Зарплата сотрудника " + this.getName() + " " +
+                this.getSurname() + " " + this.getPosition() + " " +
+                resultSalary + " BYN");
+    }
+
+}
