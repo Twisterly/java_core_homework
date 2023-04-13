@@ -1,0 +1,30 @@
+public class Hello {
+
+    public static void main(String[] args) {
+        String[] str = new String[10];
+        str[0] = "привет";
+        str[2] = "пока";
+        str[3] = "goodbye";
+        str[9] = "hell";
+
+        try {
+            findHello(str);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static int findHello(String[] str) {
+
+        int index = 0;
+        for (int i = 0; i < str.length; i++) {
+            if (str[i].equalsIgnoreCase("hello")) {
+                index = i;
+            }
+        }
+        return index;
+
+
+    }
+}
