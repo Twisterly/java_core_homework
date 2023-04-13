@@ -1,0 +1,7 @@
+public class SalesManager extends SalesWorkers {
+    public SalesManager(String name, String surname, int age,
+                        String position, double revenue,
+                        double comissionPerc, double oklad) {
+        super(name, surname, age, position, revenue, comissionPerc, oklad);
+    }
+}
