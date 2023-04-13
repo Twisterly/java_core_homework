@@ -1,0 +1,19 @@
+public class CreditGoldCard extends CreditBankCard  {
+
+    public int monthsOfCredit;
+    public String operator;  //visa vs mastercard
+
+    public int getMonthsOfCredit() {
+        return monthsOfCredit;
+    }
+
+    public void setMonthsOfCredit(int monthsOfCredit) {
+        this.monthsOfCredit = monthsOfCredit;
+    }
+
+
+    @Override
+    public double getCreditPerc() {
+        return 5.3;
+    }
+}
