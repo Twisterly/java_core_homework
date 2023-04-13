@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class NewThread extends Thread {
+
+
+    public void run() {
+        List<Integer> numsList = new ArrayList<>();
+
+        synchronized (System.out) {
+            System.out.println("Числа в потоке: ");
+            for (int i = 0; i < 10; i++) {
+                numsList.add((int) (Math.random() * 20));
+                System.out.print(numsList.get(i) + " ");
+            }
+            int sum = 0;
+            for (Integer i : numsList) {
+                sum += i;
+            }
+            System.out.println();
+            System.out.println("Сумма чисел в потоке = " + sum);
+            double result = (double) sum / numsList.size();
+            System.out.println("Среднее арифметическое = " + result);
+        }
+    }
+
+}
