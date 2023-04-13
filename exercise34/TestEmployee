@@ -1,0 +1,24 @@
+public class TestEmployee {
+
+    public static void main(String[] args) {
+        Accountant accountant = new Accountant("Татьяна", "Филипович",
+                39, "старший экономист", 21, 21,
+                1970, 200);
+        accountant.countResultSalary();
+        FinancialWorkers financialWorker1 = new FinancialWorkers("Иван", "Пирожков",
+                45, "бухгалтер", 21, 21, 2000);
+        financialWorker1.countResultSalary();
+        Master master = new Master("Инокентий", "Петров", 51,
+                "мастер 9-го разряда", 180, 9.4);
+        master.countResultSalary();
+        SalesManager salesManagers = new SalesManager("Илья", "Иванов", 25,
+                "специалист по продажам", 9740, 0.45, 290);
+        salesManagers.countResultSalary();
+        Employee master1 = new Master("Владимир", " Сидоров",
+                39, "токарь", 200, 9.1);
+        master1.countResultSalary();
+        master.checkHolidayDays(278);
+    }
+
+
+}
