@@ -1,0 +1,6 @@
+public interface Credit {
+
+     void payLoan();
+     double getCreditPerc();
+
+}
