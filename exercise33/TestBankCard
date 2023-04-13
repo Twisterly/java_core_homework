@@ -1,0 +1,29 @@
+public class TestBankCard {
+
+    public static void main(String[] args) {
+        CreditGoldCard goldCard1 = new CreditGoldCard();
+        goldCard1.addMoney(600);
+        DebitPlatinumCard platinumCard1 = new DebitPlatinumCard();
+        System.out.println(platinumCard1.getBalance());
+        platinumCard1.addMoney(70);
+        System.out.println(platinumCard1.getBalance());
+        goldCard1.payLoan();
+        goldCard1.addMoney(9500);
+        goldCard1.getBalance();
+        goldCard1.payLoan();
+        System.out.println(goldCard1.getBalance());
+        System.out.println(platinumCard1.getBalance());
+        platinumCard1.transferMoney(340, "12345678912345678");
+        DebitPlatinumCard platinumCard = new DebitPlatinumCard();
+        platinumCard.payOnline(600);
+        System.out.println(platinumCard.getBalance());
+        CreditGoldCard goldCard2 = new CreditGoldCard();
+        goldCard2.payOnline(720);
+        System.out.println(goldCard2.getBalance());
+        goldCard2.payOnline(9730);
+        System.out.println(goldCard2.getBalance());
+        DebitPlatinumCard debitPlatinumCard = new DebitPlatinumCard();
+        System.out.println(debitPlatinumCard.getOverdraftLimit());
+
+    }
+}
