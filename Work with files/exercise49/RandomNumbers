@@ -1,0 +1,37 @@
+import java.io.*;
+
+public class RandomNumbers {
+
+    public static void main(String[] args) throws IOException {
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(new FileOutputStream("d:\\IT" +
+                             "\\NewDir\\двоичный.dat"))) {
+            for (int i = 0; i < 20; i++) {
+                oos.writeInt((int) (1 + Math.random() * 100));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        int num;
+        int sum = 0;
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(new FileInputStream("d:\\IT" +
+                             "\\NewDir\\двоичный.dat"))) {
+
+            System.out.println("Числа в двоичном файле:");
+            for (int i = 0; i < 20; i++) {
+                num = ois.readInt();
+                sum += num;
+                System.out.print(num + " ");
+            }
+            double aver = (double) sum / 20;
+            System.out.println();
+            System.out.print("Среднее арифметическое = " + String.format("%.2f", aver));
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+}
