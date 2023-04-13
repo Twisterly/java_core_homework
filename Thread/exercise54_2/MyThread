@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MyThread implements Runnable {
+
+
+    @Override
+    public void run() {
+        File file = new File("d:\\IT\\NewDir\\old.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int[] array = new int[10];
+        try (FileWriter fw = new FileWriter(file, true)) {
+            for (int i = 0; i < array.length; i++) {
+                array[i] = (int) (1 + Math.random() * 100);
+            }
+            fw.write(Arrays.toString(array));
+            fw.write("\n");
+ //           System.out.println(Thread.currentThread().getName() + " записывает" +
+ //                   " в файл массив " + Arrays.toString(array));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileReader fr = new FileReader(file);
+             Scanner sc = new Scanner(fr);) {
+            while (sc.hasNextLine()) {
+                System.out.println(Thread.currentThread().getName() + " читает файл: " + sc.nextLine());
+            }
+
+        } catch (
+                FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+}
