@@ -1,0 +1,18 @@
+public class MyThread extends Thread {
+
+    public void run() {
+        int[] array = new int[10];
+        for (int i = 0; i < 10; i++) {
+            array[i] = (int) (Math.random() * 100);
+        }
+
+        int max = 0;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        System.out.printf("ThreadName: %s  MaxElement: %s \n", Thread.currentThread().getName(), max);
+
+    }
+}
