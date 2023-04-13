@@ -1,0 +1,15 @@
+public class TestSeason {
+    public static void main(String[] args){
+        Season[] seasons = Season.values();
+        for( Season season : seasons)
+            if (Season.WINTER.toString().equalsIgnoreCase(season.toString())){
+                System.out.println(season.name() + ":\n" +
+                        "количество дней: " + season.getCountOfDays() +
+                        " или " + (season.getCountOfDays() + 1) + " в зависимости от года\n" +
+                        "описание: " + season.getDESCRIPTION());
+            }
+            else System.out.println(season.name() + ":\n" +
+                    "количество дней: " + season.getCountOfDays() + "\n" +
+                    "описание: " + season.getDESCRIPTION());
+    }
+}
