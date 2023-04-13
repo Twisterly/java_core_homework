@@ -1,0 +1,6 @@
+public class CreditPlatinumCard extends CreditBankCard{
+    @Override
+    public double getCreditPerc() {
+        return 3.2;
+    }
+}
