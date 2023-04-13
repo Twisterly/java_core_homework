@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Arrays;
+
+public class MyThread implements Runnable {
+
+    public void run() {
+        File file = new File("d:\\IT\\NewDir\\Thread.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Integer[] array = new Integer[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (int) (1 + Math.random() * 100);
+        }
+
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(new FileOutputStream(file, false))) {
+            System.out.println(Thread.currentThread().getName() + " " +
+                    "записывает в файл массив: " + Arrays.toString(array));
+            oos.writeObject(array);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        Integer[] array2 = null;
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(new FileInputStream(file))) {
+            array2 = (Integer[]) ois.readObject();
+            System.out.println(Thread.currentThread().getName() + " читает из" +
+                    " файла массив: " + Arrays.toString(array2));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+}
