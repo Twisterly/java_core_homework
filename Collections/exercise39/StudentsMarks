@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentsMarks {
+
+    public static void main(String[] args) {
+        List arraylist = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            arraylist.add(i, 1 + (int) (Math.random() * 5));
+            System.out.print(arraylist.get(i) + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < arraylist.size(); i++) {
+            if (((int) arraylist.get(i)) < 3) {
+                arraylist.remove(i);
+                i--;
+            }
+        }
+        for (int i = 0; i < arraylist.size(); i++) {
+            System.out.print(arraylist.get(i) + " ");
+        }
+    }
+
+}
