@@ -1,0 +1,31 @@
+public class DryerMachine extends LaundryDevice {
+
+    public boolean backLightDrum;
+
+    public boolean isBackLightDrum() {
+        return backLightDrum;
+    }
+
+    public void setBackLightDrum(boolean backLightDrum) {
+        this.backLightDrum = backLightDrum;
+    }
+
+    public void switchLightOn() {
+        if (this.isOn() == true) {
+            if (this.backLightDrum == true) {
+                System.out.println("Подсветка барабана включена");
+            } else if (this.backLightDrum == false) {
+                System.out.println("Функция подсветки барабана не " +
+                        "поддерживается");
+            }
+        } else
+            System.out.println("Включите прибор в розетку");
+    }
+
+    public void setSpeed(int drumSpeed){
+        if (drumSpeed < this.maxDrumSpeed && drumSpeed > this.minDrumSpeed){
+            System.out.println("Сушка будет производится на " + drumSpeed + " оборотах");
+        } else
+            System.out.println("Невозможно установить такое количество оборотов");
+    }
+}
