@@ -1,0 +1,41 @@
+public class FinancialWorkers extends Employee {
+
+    int workDays;
+    int calendarDays;
+    double salary;
+
+    public FinancialWorkers(String name, String surname, int age,
+                            String position, int workDays, int calendarDays,
+                            double salary) {
+        super(name, surname, age, position);
+        this.workDays = workDays;
+        this.calendarDays = calendarDays;
+        this.salary = salary;
+    }
+
+    @Override
+    public void countResultSalary() {
+        double procent =
+                ((this.salary / this.calendarDays) * this.workDays) / 100 * 13;
+        double number =
+                (this.salary / this.calendarDays) * this.workDays - procent;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String resultSalary = decimalFormat.format(number);
+        System.out.println("Зарплата сотрудника " + this.getName() + " " +
+                this.getSurname() + " " + this.getPosition() + " " +
+                resultSalary + " BYN");
+    }
+
+    @Override
+    public void checkHolidayDays(int days) {
+        if (days >= 365) {
+            System.out.println("Пора в отпуск. Вам нужен отдых");
+        } else if (days > 180 && days < 365) {
+            System.out.println("Если Вы не чувствуете усталось, то можете " +
+                    "продолжать работать");
+        } else
+            System.out.println("Отдыхать еще рано, Вы только вошли в рабочий " +
+                    "режим");
+    }
+
+}
