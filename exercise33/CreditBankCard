@@ -1,0 +1,25 @@
+public abstract class CreditBankCard extends BankCard implements Credit {
+
+    int creditAmount = 10000;
+
+    @Override
+    public void payOnline(int sum) {
+        if (this.getBalance() + creditAmount > sum) {
+            System.out.println("Покупка совершена");
+            this.setBalance(this.getBalance() - sum);
+        } else
+            System.out.println("Сумма покупки превышает сумму кредита");
+    }
+
+    @Override
+    public void payLoan() {
+        System.out.println("Ставка по кредиту: " + getCreditPerc());
+        if (this.getBalance() > creditAmount) {
+            this.setBalance(this.getBalance() - creditAmount);
+            System.out.println("Кредит полностью оплачен");
+        } else
+            System.out.println("Невозможно оплатить кредит. Недостаточно " +
+                    "средств на карте");
+
+    }
+}
