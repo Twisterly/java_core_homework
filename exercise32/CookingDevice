@@ -1,0 +1,21 @@
+public class CookingDevice extends Device {
+
+    public int minTemp;
+    public int maxTemp;
+
+    public int getMinTemp() {
+        return minTemp;
+    }
+
+    public void setMinTemp(int minTemp) {
+        this.minTemp = minTemp;
+    }
+
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    public void setMaxTemp(int maxTemp) {
+        this.maxTemp = maxTemp;
+    }
+}
