@@ -1,0 +1,21 @@
+public abstract class DebitBankCard extends BankCard implements Debit {
+
+    boolean individDesign = true;
+    int daysToProduce = 2;
+
+    @Override
+    public void payOnline(int sum) {
+        if (this.getBalance() > sum) {
+            this.setBalance(this.getBalance() - sum);
+            System.out.println("Покупка совершена");
+        } else
+            System.out.println("Покупка не может быть совершена. Недостаточно" +
+                    " средств");
+    }
+
+    @Override
+    public void getOverDraft() {
+        System.out.println("Лимит по овердрафту: " + getOverdraftLimit());
+    }
+
+}
