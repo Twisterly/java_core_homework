@@ -1,0 +1,12 @@
+public class KitchenDevice extends Device {
+
+    public String powerUsage;
+
+    public String getPowerUsage() {
+        return powerUsage;
+    }
+
+    public void setPowerUsage(String powerUsage) {
+        this.powerUsage = powerUsage;
+    }
+}
