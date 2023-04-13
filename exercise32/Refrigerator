@@ -1,0 +1,27 @@
+public class Refrigerator extends KitchenDevice {
+
+    public double volume;
+    public int freezeTemp;
+    public int idealTemp = 5;
+
+    public double getTemp() {
+        return freezeTemp;
+    }
+
+    public void setTemp(int temp) {
+        this.freezeTemp = temp;
+    }
+
+    public void checkTemp() {
+        if (this.isOn() == true) {
+            if (this.getTemp() > idealTemp) {
+                System.out.println("Температура в холодильнике слишком высокая. Включено охлаждение");
+            } else if (this.getTemp() == idealTemp){
+                System.out.println("В холодильнике идеальная температура для хранения продуктов");
+            } else
+                System.out.println("В холодильнике слишком холодно");
+        } else
+            System.out.println("Включите прибор в розетку");
+    }
+
+}
