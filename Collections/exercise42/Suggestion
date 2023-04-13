@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Suggestion {
+
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        String text = console.nextLine();
+        String newLine1 = text.replaceAll("[.,:;\\\"'?!-()]", " ");
+        String newLine = newLine1.replaceAll(" {2,}", " ");
+        System.out.println(newLine);
+        String delimiter = " ";
+        String[] str = newLine.split(delimiter);
+        Map<String, Integer> map = new HashMap();
+        for (int i = 0; i < str.length; i++) {
+            map.put(str[i].toLowerCase(), getCount(str, str[i]));
+        }
+
+        System.out.println(map);
+
+    }
+
+    public static int getCount(String[] array, String a) {
+        int count = 0;
+        for (String w : array) {
+            if (w.equalsIgnoreCase(a)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+}
