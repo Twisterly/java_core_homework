@@ -1,0 +1,11 @@
+public class Dishwasher extends KitchenDevice {
+
+    public void washDish(int min) {
+        if (this.isOn() == true) {
+            System.out.println("Запускаем посудомоечную машину на " + min +
+                    " минут");
+        } else
+            System.out.println("Включите прибор в розетку");
+    }
+
+}
