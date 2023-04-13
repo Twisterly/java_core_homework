@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+public class RandomNumbers {
+
+    public static void main(String[] args) {
+        List arraylist = new ArrayList();
+        for (int i = 0; i < 20; i++) {
+            arraylist.add(i, (int) (Math.random() * 11));
+            System.out.print(arraylist.get(i) + " ");
+        }
+        System.out.println();
+        arraylist = new ArrayList<>(new HashSet<>(arraylist));
+        // альтернативное решение
+        /*
+        for (int i = 0; i < arraylist.size(); i++) {
+            for (int j = i + 1; j < arraylist.size(); j++) {
+                if (arraylist.get(i).equals(arraylist.get(j))) {
+                    arraylist.remove(j);
+                    j--;
+                }
+            }
+        }
+
+         */
+
+        for (int i = 0; i < arraylist.size(); i++) {
+            System.out.print(arraylist.get(i) + " ");
+        }
+    }
+
+}
