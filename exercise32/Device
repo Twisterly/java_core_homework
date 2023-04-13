@@ -1,0 +1,75 @@
+public class Device {
+    private String type;
+    private String brand;
+    private String model;
+    private String colour;
+    private double weight;
+    private String countryProducer;
+    private boolean on;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getCountryProducer() {
+        return countryProducer;
+    }
+
+    public void setCountryProducer(String countryProducer) {
+        this.countryProducer = countryProducer;
+    }
+
+    public boolean isOn() {
+        return on;
+    }
+
+    public void setOn(boolean on) {
+        this.on = on;
+    }
+
+    public void switchOn() {
+        this.on = true;
+        System.out.println("Прибор включен в розетку");
+    }
+
+    public void switchOff(){
+        this.on = false;
+        System.out.println("Прибор выключен из розетки");
+    }
+}
