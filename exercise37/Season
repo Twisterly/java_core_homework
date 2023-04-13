@@ -1,0 +1,12 @@
+public enum Season {
+    WINTER(90),
+    SPRING(92),
+    SUMMER(92),
+    AUTUMN(91);
+
+    public int countOfDays;
+
+    Season(int CountOfDays) {
+        this.countOfDays = CountOfDays;
+    }
+}
