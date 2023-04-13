@@ -1,0 +1,147 @@
+import java.io.*;
+
+
+public class ChainOfDirections {
+
+    public static void main(String[] args) throws IOException {
+        File file1 = new File("d:\\IT\\NewDir\\package1");
+        file1.mkdir();// создали 1 каталог
+        File file2 = new File("d:\\IT\\NewDir\\package1\\package2");
+        file2.mkdir();// создали 2 каталог в первом
+        File file3 = new File("d:\\IT\\NewDir\\package1\\package2\\package3");
+        file3.mkdir();// создали 3 каталог во втором
+        File file4 = new File("d:\\IT\\NewDir\\package1\\package2\\package3" +
+                "\\allFiles.txt");
+        file4.createNewFile();// создали доп файл, куда перепишем все
+        // содержимое из 5 текстовых файлов
+        File file5 = new File("d:\\IT\\NewDir\\keepAllFiles.txt");
+        file5.createNewFile(); // создали файл, который будет содержать
+        // список файлов каталога pavkage3
+
+        createAndFill(5);
+        checkCreateAndFill("d:\\IT\\NewDir\\package1\\package2\\package3" +
+                "\\allFiles.txt");
+        readNumbersFile("d:\\IT\\NewDir\\package1\\package2\\package3" +
+                "\\allFiles.txt");
+        writeInFile(file5, file3);
+        readInFile("d:\\IT\\NewDir\\keepAllFiles.txt");
+
+    }
+
+    public static void createAndFill(int countFile) throws IOException {
+        for (int i = 1; i < countFile + 1; i++) {
+            File file = new File("d:\\IT\\NewDir\\package1\\package2" +
+                    "\\package3\\file" + i + ".txt");
+            file.createNewFile(); // создаем 5 текстовых файлов в 3 каталоге
+
+            try (ObjectOutputStream oos =
+                         new ObjectOutputStream(new FileOutputStream("d:\\IT" +
+                                 "\\NewDir\\package1\\package2" +
+                                 "\\package3\\file" + i + ".txt", true))) {
+                for (int j = 0; j < 10; j++) {
+                    oos.writeInt((int) (1 + Math.random() * 100)); //
+                    // заполняем все 5 файлов 3 каталога 10 рандомными числами
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public static void checkCreateAndFill(String path) throws IOException {
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(new FileOutputStream(path))) {
+            for (int i = 1; i < 6; i++) {
+                try (ObjectInputStream ois =
+                             new ObjectInputStream(new FileInputStream("d" +
+                                     ":\\IT" +
+                                     "\\NewDir\\package1\\package2" +
+                                     "\\package3\\file" + i + ".txt"))) {   //
+                    // читаем 5 текстовых файлов
+                    System.out.println();
+                    System.out.print("Числа в файлах:");
+                    for (int j = 0; j < 10; j++) {
+                        int readInt = ois.readInt();
+                        System.out.print(readInt + " ");// выводим на
+                        // консоль числа из каждого файла .txt
+                        oos.writeInt(readInt);
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+
+    }
+
+    public static void readNumbersFile(String path) throws IOException {
+
+        try (
+                ObjectInputStream ois =
+                        new ObjectInputStream(new FileInputStream(path))) { //
+            // читаем
+            // доп файл
+            int count = 0;
+            System.out.println();
+            System.out.println("Числа в файле:");
+            for (int j = 0; j < 50; j++) {
+                int readInt = ois.readInt();
+                System.out.print(readInt + " "); // выводим на консоль
+                // содержимое доп файла
+                count++;
+                if (count == 25) {
+                    System.out.println();
+                }
+            }
+
+        } catch (
+                Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println();
+
+
+    }
+
+    public static void writeInFile(File f1, File f2) {
+
+        try {
+            FileWriter fileWriter = new FileWriter(f1);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (File file : f2.listFiles()) {
+                bufferedWriter.write(file.getPath());//записываем в файл пути
+                // ко всем файлам из каталога package3
+                bufferedWriter.newLine();
+
+            }
+
+            bufferedWriter.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void readInFile(String pathname) {
+
+        try {
+            File myFile = new File(pathname);
+            FileReader fileReader = new FileReader(myFile);
+            BufferedReader reader = new BufferedReader(fileReader);
+
+            String line = null;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);//читаем пути ко всем файлам из
+                // каталога package3
+            }
+            reader.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+
+}
