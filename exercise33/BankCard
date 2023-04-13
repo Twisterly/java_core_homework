@@ -1,0 +1,73 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public abstract class BankCard {
+
+    private String number;
+    private int[] pin;
+    private String valueDate;
+    private int cvc;
+    private int balance;
+
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public int[] getPin() {
+        return pin;
+    }
+
+    public void setPin(int[] pin) {
+        pin = new int[4];
+    }
+
+    public String getValueDate() {
+        return valueDate;
+    }
+
+    public void setValueDate(String valueDate) {
+        Pattern p = Pattern.compile("^(([0][1-9])||([1][0-2]))\\/[2][2-9]$");
+        Matcher m = p.matcher(valueDate);
+        if (m.find() == true) {
+            this.valueDate = valueDate;
+        }
+    }
+
+    public int getCvc() {
+        return cvc;
+    }
+
+    public void setCvc(int cvc) {
+        this.cvc = cvc;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void addMoney(int money) {
+        this.balance += money;
+        System.out.println("На карту зачислено " + money + " BYN");
+    }
+
+    public void transferMoney(int money, String cardNumber){
+        if (this.getBalance() >= money) {
+            int transfer = this.getBalance() - money;
+            this.setBalance(this.getBalance() - money);
+            System.out.println("Перевод в размере " + money + " отпралвен на карту № " + cardNumber);
+            System.out.println("Баланс карты " + this.getBalance());
+        } else
+            System.out.println("Невозможно совершить перевод. Недостаточно средств");
+    }
+
+    public abstract void payOnline(int sum);
+}
