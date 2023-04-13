@@ -1,0 +1,37 @@
+import java.io.*;
+import java.time.LocalDateTime;
+
+
+public class MyCallablePrinter {
+
+    public synchronized String recordInFile(String name) {
+        File file = new File("d:\\IT\\NewDir\\Задание60.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String message = "Hello World";
+        String result = null;
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(message + " " + LocalDateTime.now());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                result = name + " read " + line;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println(result);
+            return result;
+        }
+
+
+    }
+}
