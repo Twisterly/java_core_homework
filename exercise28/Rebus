@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Rebus {
+
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        String str = console.nextLine();
+        String[] words;
+        String delimiter1 = " ";
+        String newLine = str.replaceAll("[.,:;\\\"'?!-()]", "");
+        words = newLine.split(delimiter1);
+        for (int i = 0; i < words.length; i++) {
+            System.out.print(words[i].charAt(words[i].length() - 1));
+        }
+
+
+        String[] splitText = str.split("\\Ц");
+        for(int i = 0; i < splitText.length-1; i++){
+            System.out.println(splitText[i]);
+        }
+    }
+
+}
