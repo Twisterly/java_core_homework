@@ -1,0 +1,26 @@
+public enum Season {
+
+
+    WINTER(90, "Температура ниже 0 градусов по Цельсию, снег"),
+    SPRING(92, "Заметно увеличение светового дня, повышается температура"),
+    SUMMER(92, "Наиболее высокая температура окружающей среды"),
+    AUTUMN(91, "Заметно уменьшение светового дня, понижается температура");
+
+    private  int countOfDays;
+    private final String DESCRIPTION;
+
+    public int getCountOfDays() {
+        return countOfDays;
+    }
+
+    public String getDESCRIPTION() {
+        return DESCRIPTION;
+    }
+
+
+    Season(int CountOfDays, String DESCRIPTION) {
+        this.countOfDays = CountOfDays;
+        this.DESCRIPTION = DESCRIPTION;
+    }
+
+}
