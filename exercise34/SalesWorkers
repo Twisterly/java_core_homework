@@ -1,0 +1,42 @@
+import java.text.DecimalFormat;
+
+public class SalesWorkers extends Employee {
+
+    double revenue;
+    double comissionPerc;
+    double salary;
+
+    public SalesWorkers(String name, String surname, int age, String position
+            , double revenue, double comissionPerc, double salary) {
+        super(name, surname, age, position);
+        this.revenue = revenue;
+        this.comissionPerc = comissionPerc;
+        this.salary = salary;
+    }
+
+    @Override
+    public void countResultSalary() {
+        double procent =
+                (this.revenue * this.comissionPerc + this.salary) / 100 * 13;
+        double number =
+                (this.revenue * this.comissionPerc + this.salary) - procent;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String resultSalary = decimalFormat.format(number);
+        System.out.println("Зарплата сотрудника " + this.getName() + " " +
+                this.getSurname() + " " + this.getPosition() + " " +
+                resultSalary + " BYN");
+    }
+
+    @Override
+    public void checkHolidayDays(int days) {
+        if (days >= 300) {
+            System.out.println("Пора в отпуск. Вам нужен отдых");
+        } else if (days > 210 && days < 300) {
+            System.out.println("Если Вы не чувствуете усталось, то можете " +
+                    "продолжать работать");
+        } else
+            System.out.println("Отдыхать еще рано, Вы только вошли в рабочий " +
+                    "режим");
+    }
+}
+
