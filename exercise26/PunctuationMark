@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class PunctuationMark {
+
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        String str = console.nextLine();
+        System.out.println("Общее количество знаков препинания в строке " + sumPunctMarks(str));
+    }
+
+    public static Integer sumPunctMarks(String str){
+        Pattern p = Pattern.compile("[.,:;\\\"'?!-()]");
+        //    Pattern p = Pattern.compile("\\p{P}");
+        // можно использовать паттерн, но он считает за знаки препинания и
+        // другие символы @#&/\
+        Matcher m = p.matcher(str);
+        int count = 0;
+        while (m.find() == true) {
+            count++;
+        }
+        return count;
+    }
+}
