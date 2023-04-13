@@ -1,0 +1,65 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Test {
+
+    public static void main(String[] args) {
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            persons.add(new Person(generateName(), generateSurname(),
+                    (int) (Math.random() * 80)));
+            System.out.println(persons.get(i).getName() + " "
+                    + persons.get(i).getSurname() + " "
+                    + persons.get(i).getAge());
+
+            try (ObjectOutputStream oos =
+                         new ObjectOutputStream(new FileOutputStream("d:\\IT" +
+                                 "\\NewDir\\persons.txt"))) {
+                oos.writeObject(persons);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        List<Person> persons2;
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(new FileInputStream("d:\\IT" +
+                             "\\NewDir\\persons.txt"))) {
+            persons2 = (List<Person>) ois.readObject();
+            for (Person p : persons2) {
+                System.out.printf("Name: %s  Surname: %s Age: %s",
+                        p.getName(), p.getSurname(), p.getAge());
+                System.out.println();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+
+    public static String generateName() {
+        String[] names = {"PETER", "JOHN", "JULIA", "IVAN", "VERONICA",
+                "MARIA", "JOSH", "VANESSA", "AGNESS", "BOB", "KIRSTEN",
+                "JUSTIN", "FEDERIK", "SEBASTIAN", "NOAH", "JACOB", "ETHAN",
+                "WENDY", "JODIE", "MARTHA", "GREG", "TEODOR", "VIOLA", "EVA",
+                "ZOE", "ADAM", "CALEB"};
+        int n = (int) Math.floor(Math.random() * names.length);
+        return names[n];
+    }
+
+    public static String generateSurname() {
+        String[] surnames = {"SMITH", "JOHNSON", "WILLIAMS", "JOHNS", "BROWN"
+                , "DAVIS", "MILLER", "WILLSON", "COOK", "BELL", "WHITE",
+                "GARCIA", "LEWIS", "WALKER", "HALL", "SANDERS", "LOPEZ",
+                "HILL", "JENKINS", "PATTERSON", "BAILEY", "TORRES", "CLARK",
+                "LEWIS", "SCOTT"};
+        int n = (int) Math.floor(Math.random() * surnames.length);
+        return surnames[n];
+    }
+
+}
