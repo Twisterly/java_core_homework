@@ -1,0 +1,18 @@
+public class DebitPlatinumCard extends DebitBankCard {
+
+    public int monthOfFreeService;
+
+    public int getMonthOfFreeService() {
+        return monthOfFreeService;
+    }
+
+    public void setMonthOfFreeService(int monthOfFreeService) {
+        this.monthOfFreeService = monthOfFreeService;
+    }
+
+
+    @Override
+    public double getOverdraftLimit() {
+        return 10000;
+    }
+}
