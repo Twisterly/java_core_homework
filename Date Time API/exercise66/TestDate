@@ -1,0 +1,9 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class TestDate {
+    public static void main(String[] args) {
+        System.out.println("60 дней назад было " +
+                LocalDate.now().minusDays(60).format(DateTimeFormatter.ofPattern("d MMMM yyyy")));
+    }
+}
