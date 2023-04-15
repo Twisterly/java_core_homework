@@ -17,6 +17,7 @@ public class MyThread extends Thread {
                         Thread.currentThread().getName(), max);
             }, "Поток " + i).start();
         }
-
+        
+        
     }
 }
