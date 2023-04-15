@@ -1,0 +1,51 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+public class TestSchedule {
+    public static void main(String[] args) {
+        List<Schedule> scheduleList = new ArrayList<>();
+        LocalDateTime meet = LocalDateTime.of(LocalDate.now(),
+                LocalTime.of(13, 00));
+        for (int i = 0; i < meet.plusMonths(2).getDayOfYear() - meet.getDayOfYear(); i++) {
+            scheduleList.add(new Schedule(generateMeeting(), meet.plusDays(i)));
+        }
+
+        List<Schedule> result = scheduleList.stream()
+                .filter((s) -> s.getTime().isAfter(LocalDateTime.of(LocalDate.now(),
+                        LocalTime.of(00, 00))) &&
+                        s.getTime().isBefore(LocalDateTime.now().plusMonths(2)))
+                .sorted(new ScheduleTimeComparator())
+                .collect(Collectors.toList());
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy " +
+                "HH:mm");
+        LocalDate temp = LocalDate.now();
+        for (Schedule s : result) {
+            if (s.getTime().getDayOfWeek().equals(temp.getDayOfWeek())) {
+                System.out.println(s.getTime().format(format) + " " + s.getMeeting());
+                temp = temp.plusWeeks(1);
+            }
+        }
+    }
+
+
+    public static String generateMeeting() {
+        String[] surnames = {"совещание", "онлайн-митинг", "презентация в " +
+                "Microsoft",
+                "встреча с представителями компании FedEx", "бранч с " +
+                "инвесторами", "встреча с министром", "концерт в школе у " +
+                "дочки", "встреча " +
+                "с редактором журнала",
+                "обед с поставщиками", "встреча с директором 'Java Co' ",
+                "тренинг по Java"};
+        int n = (int) Math.floor(Math.random() * surnames.length);
+        return surnames[n];
+    }
+
+
+}
