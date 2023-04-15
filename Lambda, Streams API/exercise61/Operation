@@ -1,0 +1,5 @@
+import java.util.List;
+
+interface Operation<T> {
+    T action(List<Integer> list);
+}
