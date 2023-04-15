@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class TestPerson {
+    public static void main(String[] args) {
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            persons.add(new Person(generateName(), generateSurname(),
+                    (int) ((Math.random() * 16) + 15)));
+        }
+
+        List<String> result = persons.stream()
+                .filter((p) -> p.getAge() < 21)
+                .peek((p) -> System.out.println(p.getName() + " " + p.getSurname() + " " + p.getAge()))
+                .sorted(new PersonSurnameComparator().thenComparing(new PersonNameComparator()))
+                .limit(4).map((s) -> s.getSurname()).collect(Collectors.toList());
+        System.out.println(result);
+
+    }
+
+    public static String generateName() {
+        String[] names = {"PETER", "JOHN", "JULIA", "IVAN", "VERONICA",
+                "MARIA", "JOSH", "VANESSA", "AGNESS", "BOB", "KIRSTEN",
+                "JUSTIN", "FEDERIK", "SEBASTIAN", "NOAH", "JACOB", "ETHAN",
+                "WENDY", "JODIE", "MARTHA", "GREG", "TEODOR", "VIOLA", "EVA",
+                "ZOE", "ADAM", "CALEB", "ABRAHAM", "ADAM", "ALBERT", "ANDREW"
+                , "ASHLEY", "BERNARD", "BRYAN", "CARL", "CALEB", "CHARLES",
+                "CHRISTOPHER", "DARREN", "DIRK", "EARL", "MONICA", "ELIZABETH"};
+        int n = (int) Math.floor(Math.random() * names.length);
+        return names[n];
+    }
+
+    public static String generateSurname() {
+        String[] surnames = {"SMITH", "JOHNSON", "WILLIAMS", "JOHNS", "BROWN"
+                , "DAVIS", "MILLER", "WILLSON", "COOK", "BELL", "WHITE",
+                "GARCIA", "LEWIS", "WALKER", "HALL", "SANDERS", "LOPEZ",
+                "HILL", "JENKINS", "PATTERSON", "BAILEY", "TORRES", "CLARK",
+                "LEWIS", "SCOTT", "ADAMS", "WILLKINS", "BECKER", "TRUMP",
+                "FERDINAD", "MAZEL", "ANDERSON", "BROOKS", "BARNES", "BUTLER"};
+        int n = (int) Math.floor(Math.random() * surnames.length);
+        return surnames[n];
+    }
+}
