@@ -1,0 +1,29 @@
+import java.time.LocalDateTime;
+
+public class Schedule  {
+
+    private String meeting;
+    private LocalDateTime time;
+
+    public Schedule(String meeting, LocalDateTime time) {
+        this.meeting = meeting;
+        this.time = time;
+    }
+
+    public String getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(String meeting) {
+        this.meeting = meeting;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
+}
