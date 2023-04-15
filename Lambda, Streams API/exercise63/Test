@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        int minValue = 15;
+        int maxValue = 100;
+        for (int i = minValue; i <= maxValue; i++) {
+            list.add(i);
+        }
+
+        System.out.println("Содержатся ли в коллекции числа, которые делятся " +
+                "и на 3 и на 5 ?\n" +
+                list.stream().anyMatch((s) -> s % 3 == 0 && s % 5 == 0));
+
+        System.out.println("Эти числа: " + list.stream()
+                .filter((s) -> s % 3 == 0)
+                .filter((s) -> s % 5 == 0)
+                .collect(Collectors.toList()));
+    }
+}
