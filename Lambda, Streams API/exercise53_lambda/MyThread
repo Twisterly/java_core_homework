@@ -1,0 +1,22 @@
+public class MyThread extends Thread {
+
+    public void run() {}
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            new Thread(() -> {
+                int[] arr = new int[10];
+                int max = 0;
+                for (int j = 0; j < arr.length; j++) {
+                    arr[j] = (int) (Math.random() * 100);
+                    if (arr[j] > max) {
+                        max = arr[j];
+                    }
+                }
+                System.out.printf("ThreadName: %s  MaxElement: %s \n",
+                        Thread.currentThread().getName(), max);
+            }, "Поток " + i).start();
+        }
+
+    }
+}
